@@ -5,11 +5,8 @@ on:
     types: [refresh_index]
 
 jobs:
-  build_and_deploy:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
     steps:
     - uses: actions/github-script@v8
       with:
@@ -17,7 +14,7 @@ jobs:
           const fs = require("node:fs");
 
           const PACKAGE_NAME = "vision-toolkit";
-          const DIR = "site";
+          const DIR = "pyindex";
 
           const owner = '${{ github.repository_owner }}';
           const repo = "vision-toolkit";
@@ -62,6 +59,14 @@ jobs:
 
     - uses: actions/upload-pages-artifact@v3
       with:
-        path: site/
+        path: pyindex
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    needs: build
+    steps:
+    - uses: actions/deploy-pages@v4
   
       
