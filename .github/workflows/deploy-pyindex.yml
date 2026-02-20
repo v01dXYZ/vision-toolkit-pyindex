@@ -17,7 +17,7 @@ jobs:
           const DIR = "pyindex";
 
           const owner = '${{ github.repository_owner }}';
-          const repo = "vision-toolkit";
+          const repo = '${{ github.event.repository.name }}'.replace("-pyindex", "");
 
           class ToHTMLSimpleIndex {
               constructor(buffer) {
