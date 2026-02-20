@@ -9,6 +9,7 @@ jobs:
     permissions:
       pages: write
       id-token: write
+    steps:
     - uses: actions/github-script@v8
       with:
         script: |
